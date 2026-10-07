@@ -38,5 +38,29 @@ python app.py
 ## 🔍 Inspecting the Tree (Under the Hood)
 Run `python inspect_tree.py` to generate `document_tree.json`. 
 
+## 🕵️ Inspecting the Agent Trace
+
+When building Agentic RAG with local models (like Llama 3.1 8B), you will often encounter **Tool Hallucinations**—where the LLM understands what to do, but generates the wrong JSON schema for the tool.
+
+We built an internal trace inspector in `app.py` to watch the agent's internal reasoning, tool calls, and tool errors in real time. 
+
+### Prompt-Based Schema Enforcement
+To fix tool schema hallucinations in smaller models without fine-tuning, we use the `instructions` parameter to strictly enforce the schema rules at runtime:
+
+bash
+python
+stream = client.chat(
+question,
+doc_id=doc_id,
+stream=True,
+instructions=(
+"When using get_page_content, you MUST provide the required "
+"pages argument. Never use page_range, start_index, or end_index."
+)
+)
+
+Running `python app.py` will now output a color-coded trace showing the exact API calls the agent makes to the document tree, making it incredibly easy to debug and optimize local LLM behavior.
+
 **Why this matters:**
 Traditional RAG cuts documents into meaningless 1,000-character chunks. PageIndex builds a hierarchical tree (Chapters -> Sections -> Paragraphs). During a query, the LLM agent actively reads the node summaries and navigates down the most relevant branches—simulating how a human uses a Table of Contents to find an answer without reading the whole book.
+
