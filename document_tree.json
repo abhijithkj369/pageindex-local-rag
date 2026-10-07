@@ -1,0 +1,143 @@
+[
+  {
+    "title": "Abstract",
+    "node_id": "0000",
+    "start_index": 1,
+    "end_index": 2,
+    "summary": "This document discusses the Transformer, a new sequence transduction model that relies entirely on attention mechanisms to draw global dependencies between input and output. It presents experiments on machine translation tasks, showcasing its ability to achieve state-of-the-art results while being more parallelizable and requiring less training time. The Transformer also generalizes well to other tasks, such as English constituency parsing. Additionally, the document explains the background and limitations of traditional sequence modeling methods and highlights the benefits of self-attention and multi-head attention in reducing sequential computation and improving model performance."
+  },
+  {
+    "title": "Transformers: Redefining Sequence Modeling with Attention Mechanisms",
+    "node_id": "0001",
+    "start_index": 2,
+    "end_index": 2,
+    "key_items": [
+      "Introduction",
+      "Background"
+    ],
+    "summary": "The text explores the limitations of recurrent neural networks in sequence modeling and introduces the Transformer, a novel model architecture that relies entirely on attention mechanisms to draw global dependencies between input and output. It discusses the advantages of parallelization and improved performance, and outlines the motivations and benefits of using self-attention and Multi-Head Attention in the Transformer. The text also briefly reviews existing competitive models and highlights the differences between the Transformer and other transduction models."
+  },
+  {
+    "title": "Model Architecture",
+    "node_id": "0002",
+    "start_index": 2,
+    "end_index": 6,
+    "summary": "The Transformer model is introduced as an alternative to RNNs and CNNs for sequence modeling and transduction tasks. It relies entirely on attention mechanisms to draw global dependencies between inputs and outputs, allowing for more parallelization and faster training. The model consists of stacked self-attention and point-wise, fully connected layers for both encoder and decoder, with residual connections and layer normalization. It employs attention mechanisms, including single-head and multi-head attention, and uses embeddings and a softmax function to convert input tokens and output tokens to vectors. The model has a 512-dimensional input and output Embeddings dimension, and has achieved a new state-of-the-art in translation quality.",
+    "nodes": [
+      {
+        "title": "1 Introduction",
+        "node_id": "0003",
+        "start_index": 2,
+        "end_index": 2,
+        "summary": "The Transformer model is proposed as an alternative to recurrent neural networks (RNNs) and convolutional neural networks (CNNs) for sequence modeling and transduction tasks. It relies entirely on attention mechanisms to draw global dependencies between inputs and outputs, allowing for more parallelization and faster training. The Transformer achieves a new state-of-the-art in translation quality and is based on self-attention, which is a mechanism relating different positions of a single sequence. It is shown to perform well on various tasks, including reading comprehension, abstractive summarization, and language modeling."
+      },
+      {
+        "title": "2 Background",
+        "node_id": "0004",
+        "start_index": 2,
+        "end_index": 3,
+        "summary": "The text describes the development of transduction models for sequence modeling tasks, focusing on improving computational efficiency and model performance. It introduces the Transformer architecture, which eschews recurrence and relies on self-attention mechanisms to draw global dependencies between input and output. This architecture allows for parallelization and achieves state-of-the-art results in translation quality. The text also discusses the use of self-attention in various tasks, including reading comprehension, abstractive summarization, and end-to-end memory networks. It describes the model architecture of the Transformer, including the encoder and decoder stacks, and the use of Multi-Head Attention and residual connections for improved performance."
+      },
+      {
+        "title": "Encoder and Decoder Stacks",
+        "node_id": "0005",
+        "start_index": 3,
+        "end_index": 3,
+        "summary": "The Transformer model architecture consists of stacked self-attention and point-wise, fully connected layers for both the encoder and decoder. The encoder has 6 identical layers with 2 sub-layers each, while the decoder also has 6 layers with 3 sub-layers. The model employs residual connections and layer normalization, and introduces masking to prevent positions from attending to subsequent positions. Attention is computed as a weighted sum of a query and key-value pairs."
+      },
+      {
+        "title": "Attention",
+        "node_id": "0006",
+        "start_index": 3,
+        "end_index": 5,
+        "key_items": [
+          "3.1 Encoder and Decoder Stacks",
+          "Scaled Dot-Product Attention",
+          "Multi-Head Attention",
+          "3.2.1 Scaled Dot-Product Attention",
+          "Applications of Attention in our Model"
+        ],
+        "summary": "The Transformer model architecture uses stacked self-attention and point-wise, fully connected layers for both encoder and decoder, allowing for multi-head attention and preventing leftward information flow in the decoder. The encoder and decoder have identical layers with two sub-layers each, with residual connections and layer normalization. The model employs attention mechanisms, including single-head and multi-head attention, with the latter consisting of several attention layers running in parallel, and uses position-wise feed-forward networks with two linear transformations and a ReLU activation. The model also uses embeddings and a softmax function to convert input tokens and output tokens to vectors, with shared weight matrices for the two embedding layers and the pre-softmax linear transformation. The model has 512-dimensional input and output Embeddings dimension, and employs 8 parallel attention layers with 64-dimensional keys, values, and queries."
+      },
+      {
+        "title": "Position-wise Feed-Forward Networks",
+        "node_id": "0007",
+        "start_index": 5,
+        "end_index": 5,
+        "summary": "The text explains the application of multi-head attention in the Transformer model. It describes how input values are projected and concatenated to form the final values. The text also explains the use of multi-head attention in encoder-decoder attention layers, self-attention layers in the encoder and decoder, and position-wise feed-forward networks. Additionally, it describes the use of learned embeddings, linear transformations, and softmax function to convert input tokens and output tokens to predicted next-token probabilities."
+      },
+      {
+        "title": "Embeddings and Softmax",
+        "node_id": "0008",
+        "start_index": 5,
+        "end_index": 6,
+        "key_items": [
+          "3.2.3 Applications of Attention in our Model",
+          "3.3 Position-wise Feed-Forward Networks"
+        ],
+        "summary": "The text explains the architecture and components of a Transformer model based on the Transformer architecture. It covers multi-head attention, encoder-decoder attention, self-attention layers, position-wise feed-forward networks, embeddings and softmax, positional encoding, and the comparison of self-attention layers to recurrent and convolutional layers in terms of computational complexity, parallelizability, and long-range dependencies. The model is designed to make use of the order of the sequence without recurrence and convolution, and the authors hypothesize that the positional encoding may allow the model to easily learn to attend by relative positions."
+      },
+      {
+        "title": "Positional Encoding",
+        "node_id": "0009",
+        "start_index": 6,
+        "end_index": 6,
+        "summary": "The text discusses the use of self-attention layers in sequence transduction tasks, comparing them to recurrent and convolutional layers. It highlights the advantages of self-attention layers, including their ability to parallelize computation and learn long-range dependencies, with a maximum path length of O(1), which is faster than recurrent layers. The text also describes positional encoding, used to inject position information into the model, and its benefits in learning relative positions. Finally, it motivates the use of self-attention layers based on their computational complexity, parallelization capabilities, and path length between long-range dependencies."
+      }
+    ]
+  },
+  {
+    "title": "Why Self-Attention",
+    "node_id": "0010",
+    "start_index": 6,
+    "end_index": 7,
+    "key_items": [
+      "3.5 Positional Encoding"
+    ],
+    "summary": "The text discusses the use of self-attention mechanisms in sequence transduction tasks, comparing their performance to recurrent and convolutional layers. It highlights the advantages of self-attention, including lower computational complexity and faster parallelization, as well as its ability to learn long-range dependencies. The text also explains the use of positional encoding to inject information about token positions, and presents experimental results comparing self-attention to other architectures. Finally, it describes the training regime for self-attention models, including the dataset, batching, and optimization settings."
+  },
+  {
+    "title": "Training",
+    "node_id": "0011",
+    "start_index": 7,
+    "end_index": 8,
+    "key_items": [
+      "Training Data and Batching; Hardware and Schedule; Optimizer",
+      "Training Data and Batching",
+      "Hardware and Schedule",
+      "Optimizer",
+      "Regularization",
+      "5 Training",
+      "5.1 Training Data and Batching; 5.2 Hardware and Schedule; 5.3 Optimizer",
+      "5.1 Training Data and Batching",
+      "5.2 Hardware and Schedule",
+      "5.3 Optimizer",
+      "5.4 Regularization"
+    ],
+    "summary": "The text discusses the Transformer model, a machine translation model that achieves state-of-the-art results in translation. It explains the limitations of traditional models and proposes a new approach to improve computational performance. The text also discusses various components of the Transformer model, including self-attention mechanisms, convolutional layers, and residual dropout. It presents the results of experiments on the WMT 2014 English-to-German and English-to-French translation tasks, showing that the Transformer model outperforms previous state-of-the-art models. Finally, it discusses the importance of different components of the Transformer model and presents various model variations to evaluate their impact on performance."
+  },
+  {
+    "title": "Results",
+    "node_id": "0012",
+    "start_index": 8,
+    "end_index": 10,
+    "key_items": [
+      "Machine Translation",
+      "Model Variations",
+      "6 Results",
+      "6.1 Machine Translation",
+      "English Constituency Parsing"
+    ],
+    "summary": "The paper introduces the Transformer, a sequence transduction model based on attention, which outperforms state-of-the-art models in machine translation tasks. The Transformer achieves new BLEU scores on English-to-German and English-to-French translation tasks, while reducing training time and cost. The model is also evaluated on English constituency parsing, where it shows promising results, generalizing well to a new task. The authors plan to extend the Transformer to other tasks and modalities, and make the code available for evaluation and training."
+  },
+  {
+    "title": "Conclusion",
+    "node_id": "0013",
+    "start_index": 10,
+    "end_index": 15,
+    "key_items": [
+      "References"
+    ],
+    "summary": "The paper discusses the Transformer model, a sequence transduction model based on attention, which outperforms existing models in tasks such as machine translation and constituency parsing. It presents the results of the Transformer model on several datasets, including the WSJ and WMT 2014 English-to-German and English-to-French translation tasks. The model is compared to other models, including recurrent neural networks and convolutional networks. The paper also presents visualizations of the attention mechanism used by the Transformer model. The conclusion highlights the potential of attention-based models and future research directions."
+  }
+]

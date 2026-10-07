@@ -34,3 +34,9 @@ curl -o attention_is_all_you_need.pdf https://arxiv.org/pdf/1706.03762.pdf
 4. **Run the application:**
 bash
 python app.py
+
+## 🔍 Inspecting the Tree (Under the Hood)
+Run `python inspect_tree.py` to generate `document_tree.json`. 
+
+**Why this matters:**
+Traditional RAG cuts documents into meaningless 1,000-character chunks. PageIndex builds a hierarchical tree (Chapters -> Sections -> Paragraphs). During a query, the LLM agent actively reads the node summaries and navigates down the most relevant branches—simulating how a human uses a Table of Contents to find an answer without reading the whole book.
