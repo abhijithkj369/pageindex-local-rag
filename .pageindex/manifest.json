@@ -1,1 +1,26 @@
-{"docs": {"pi-836e40ab1341496ca0246dc01ccdd80f": {"id": "pi-836e40ab1341496ca0246dc01ccdd80f", "name": "attention_is_all_you_need.pdf", "description": "This document provides an in-depth introduction to the Transformer model, a novel deep learning architecture that replaces sequential recurrent layers with multi-headed self-attention, resulting in improved parallelization, faster training times, and state-of-the-art results in machine translation tasks.", "status": "completed", "createdAt": "2026-10-07T09:48:14.401000", "pageNum": 15, "folderId": null, "metadata": null, "mode": "flash"}}}
+{
+    "docs": {
+        "pi-836e40ab1341496ca0246dc01ccdd80f": {
+            "id": "pi-836e40ab1341496ca0246dc01ccdd80f",
+            "name": "attention_is_all_you_need.pdf",
+            "description": "This document provides an in-depth introduction to the Transformer model, a novel deep learning architecture that replaces sequential recurrent layers with multi-headed self-attention, resulting in improved parallelization, faster training times, and state-of-the-art results in machine translation tasks.",
+            "status": "completed",
+            "createdAt": "2026-10-07T09:48:14.401000",
+            "pageNum": 15,
+            "folderId": null,
+            "metadata": null,
+            "mode": "flash"
+        },
+        "pi-ecfa131288be432e92c1da24a3c14608": {
+            "id": "pi-ecfa131288be432e92c1da24a3c14608",
+            "name": "attention_is_all_you_need_1.pdf",
+            "description": "The Transformer model is a sequence transduction model that relies entirely on attention mechanisms to draw global dependencies between input and output, achieving state-of-the-art results in machine translation and constituency parsing tasks.",
+            "status": "completed",
+            "createdAt": "2026-10-07T10:04:16.713000",
+            "pageNum": 15,
+            "folderId": null,
+            "metadata": null,
+            "mode": "flash"
+        }
+    }
+}

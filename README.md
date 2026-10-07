@@ -15,3 +15,22 @@ Unlike traditional RAG that relies on semantic similarity (which often retrieves
 
 1. **Install Ollama and pull the model:**
    Ensure Ollama is running locally, then download the model:
+
+bash
+ollama run llama3.1
+
+
+2. **Install Python dependencies:**
+bash
+pip install -r requirements.txt
+
+
+3. **Get the Dataset:**
+Download the sample document into the root folder:
+bash
+curl -o attention_is_all_you_need.pdf https://arxiv.org/pdf/1706.03762.pdf
+
+
+4. **Run the application:**
+bash
+python app.py
