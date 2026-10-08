@@ -44,33 +44,38 @@ def run_rag(question, doc_id):
     return retrieved_context, final_answer
 
 def llm_judge(question, context, answer):
-    """Uses Ollama to score the RAG output based on Faithfulness and Relevance."""
-    prompt = f"""You are an expert AI evaluator.
-    
-    QUESTION: {question}
-    RETRIEVED CONTEXT: {context[:2000]}... # Truncated for context limits
-    AGENT ANSWER: {answer}
+        """Uses Ollama to score the RAG output based on Faithfulness and Relevance."""
+        prompt = f"""You are an expert AI evaluator.
+        
+        QUESTION: {question}
+        RETRIEVED CONTEXT: {context[:2000]}...
+        AGENT ANSWER: {answer}
 
-    Evaluate the Agent's Answer based on two metrics:
-    1. Faithfulness (1-5): Is the answer strictly derived from the context? (5 = 100% grounded, 1 = severe hallucination)
-    2. Relevance (1-5): Does it directly answer the user's question? (5 = perfectly relevant, 1 = entirely off-topic)
+        Evaluate the Agent's Answer based on two metrics:
+        1. Faithfulness (1-5): Is the answer strictly derived from the context? (5 = 100% grounded, 1 = severe hallucination)
+        2. Relevance (1-5): Does it directly answer the user's question? (5 = perfectly relevant, 1 = entirely off-topic)
 
-    Output strictly in JSON format.
-    """
-    
-    payload = {
-        "model": EVAL_MODEL,
-        "prompt": prompt,
-        "stream": False,
-        "format": "json" # Forces Ollama to return valid JSON
-    }
-    
-    response = requests.post(OLLAMA_URL, json=payload)
-    
-    try:
-        return json.loads(response.json()["response"])
-    except Exception as e:
-        return {"faithfulness": 0, "relevance": 0, "reasoning": "Failed to parse judge output."}
+        You MUST output ONLY a JSON object exactly matching this format, with no other text:
+        {{
+            "faithfulness": <int>,
+            "relevance": <int>,
+            "reasoning": "<a short one-sentence explanation for the scores>"
+        }}
+        """
+        
+        payload = {
+            "model": EVAL_MODEL,
+            "prompt": prompt,
+            "stream": False,
+            "format": "json" 
+        }
+        
+        response = requests.post(OLLAMA_URL, json=payload)
+        
+        try:
+            return json.loads(response.json()["response"])
+        except Exception as e:
+            return {"faithfulness": 0, "relevance": 0, "reasoning": f"Parse error: {e}"}
 
 def main():
     print("="*60)
