@@ -36,7 +36,7 @@ def main():
     print("="*50)
     
     doc_id = get_or_create_document(client)
-    question = "How does multi-head attention work?"
+    question = "Which experiments were performed to evaluate the Transformer, and what were the main results on the English-to-German and English-to-French translation tasks?"
     
     print(f"\nDocument: {DOC_PATH}")
     print(f"Question: {question}\n")
